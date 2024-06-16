@@ -1,0 +1,293 @@
+/****** More of My Resets *******/
+*,
+*::before,
+*::after{box-sizing:border-box;}
+/*** global varialables ***/
+$amountOfVirus:100;
+:root{
+  --common-color1:#c72113;
+  --common-color2:#2674c3;
+}
+
+html{
+  overflow:hidden;
+  //background-image:url(https://source.unsplash.com/random);
+  background-image:url(https://picsum.photos/1200/600);
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  font-size:1px;  
+  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; /* Standard */
+  min-height:100vh;
+}
+body{counter-reset:corona; font-size:16rem; font-family:arial;}
+/***** Game Menu Frame *****/
+.game-menu-frame{
+  &::before{
+    content:""; background-color:rgba(0,0,0,0.6);
+    position:absolute; left:0; right:0; top:0; bottom:0;
+  }
+}
+.game-header{position:relative; z-index:5; perspective:800px;}
+.game-title{
+  position:relative; z-index:10; margin-top:20px; transform:rotateX(21deg); margin-bottom:40px;
+  color:#fff; font-size:54rem; font-weight:800; text-transform:uppercase; letter-spacing:-4px; text-align:center;
+  text-shadow: 2px 1px 0px #d2d2d2, 4px 2px 0px #4f3256, 3px 1px 6px #000000;
+  /*-webkit-text-stroke-width: 2px; -webkit-text-stroke-color: black;
+  text-shadow:2px 0px 5px #1c99ca, 0px 2px 5px #1c99ca, -2px 0px 5px #1c99ca, 0px -2px 5px #1c99ca;*/      
+  .line-1{font-size:40rem; letter-spacing:-2px;}
+  .line-2{font-size:63rem;}
+  .line-3{font-size:14rem; font-weight:nomral; letter-spacing:0px; text-shadow: 1px 1px 0px #d2d2d2; margin-top:10px;}
+}
+.game-nav{
+  position:relative; z-index:5;
+  width:360px; margin:0 auto; text-align:center;
+  &-title{display:none; font-size:30rem; color:#ccc; margin-bottom:20px;}
+  &-item{margin-bottom:10px;}
+  &-button{
+    display:block; height:40px; line-height:36px; border:solid 2px rgba(255,255,255,0.4); border-radius:20px; background-color:rgba(0,0,0,0.8);
+    color:#fff; font-size:20rem; font-weight:bold; text-align:center; text-decoration:none; cursor:pointer; width:100%;    
+    &:hover, &:focus{animation: neon 1.5s ease-in-out infinite alternate; outline:none;}
+  }
+}
+.game-over{
+  position:fixed; height:0px; opacity:0; z-index:20; left:0; right:0; top:0; bottom:0;
+  overflow:hidden; box-sizing:content-box; padding-top:100px; background-color: rgba(0, 0, 0, 0.6);
+  animation: curtain 0.6s ease-in $amountOfVirus * 1s forwards;
+}
+.popup{
+  display:none;
+  position:fixed; z-index:30; top:30px; left:calc(-50vw + 50%); right:calc(-50vw + 50%);   
+  width:360px; padding:20px; min-height:380px; max-height:calc(100vh - 60px); margin-left:auto; margin-right:auto; overflow:auto;
+  border:solid 10px #121212; border-radius:10px; background-color:#fff;
+  .close-button{position:absolute; right:0; top:0; padding:20px; cursor:pointer; font-family:cursive, arial; font-size:30rem;line-height:20px;}
+  .game-nav-button{margin-top:20px; margin-bottom:20px;}
+}
+.common-content{
+  font-size:18rem; line-height:1.3;
+  .common-title{font-size:22rem; font-weight:bold; text-align:center; margin-bottom:10px;}
+  p, ul{margin-bottom:10px;}
+  a{color:var(--common-color2)}
+  img{display:block; max-width:70%; margin:10px auto;}
+  
+}
+.note{color:#ccc; line-height:1.25;}
+[class*="corona-promo-virus"]{position:absolute; top:-250px;}
+.corona-promo-virus-1{left:10vw; animation:coronaInsideStage 5s linear 1s infinite alternate;}
+.corona-promo-virus-2{right:10vw; animation:coronaInsideStage 5s linear 2s infinite alternate;}
+@keyframes coronaInsideStage{
+  to{transform:translateY(500px);}
+}
+@keyframes neon {
+  from {
+    box-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #0052ff,
+               0 0 35px #0052ff,
+               0 0 40px #0052ff,
+               0 0 50px #0052ff,
+               0 0 75px #0052ff;
+  }
+  to {
+    box-shadow: 0 0 2px #fff,
+               0 0 5px #fff,
+               0 0 7px #fff,
+               0 0 10px #0052ff,
+               0 0 17px #0052ff,
+               0 0 20px #0052ff,
+               0 0 25px #0052ff,
+               0 0 37px #0052ff;
+  }
+}
+@keyframes curtain {
+  from{height:100vh; opacity:0;}
+   to {height:100vh; opacity:1;}
+}
+/***** Game Frame *****/
+.game-frame{display:none;}
+.corona-world{
+  width:100vw; height:100vh;
+}
+/* cursor */
+.corona-world,
+.corona-virus{
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><filter id='grayscale'><feColorMatrix type='saturate' values='0.10'/></filter><text y='50%'>🧼</text></svg>") 16 0,auto; /*!emojicursor.app*/
+}
+.count-down{
+  position:absolute; z-index:22; left:20px; top:20px; font-size:40rem;
+  .icon{margin-right:20px;}
+  .count{
+    font-weight:bold; color:#fff; text-shadow:1px 1px 1px #000;    
+    &::before,
+    &::after {animation:countdown 100s step-end 1 forwards; content: ""; width:1ch;}
+    &::after {animation-duration: 10s; animation-iteration-count:10;}   
+  } 
+  @media(max-width:500px){top:auto; bottom:20px;}
+}
+.timer{
+  position:fixed; left:0; top:0;
+  width:150px; height:10px; background-color:#fff; border:solid 1px #333;
+  &::before{
+    content:""; width:0px; height:100%; display:block; background-color:var(--common-color2);
+    animation:timer 100s linear 0s; animation-fill-mode:forwards;
+  }
+  @media(max-width:500px){top:auto; bottom:0;}
+}
+@keyframes countdown {
+  0%{   content: "9"}
+  10% { content: "8" }
+  20% { content: "7" }
+  30% { content: "6" }
+  40% { content: "5" }
+  50% { content: "4" }
+  60% { content: "3" }
+  70% { content: "2" }
+  80% { content: "1" }
+  90%, 100% { content: "0" }
+}
+@keyframes timer{
+  0%{width:3%;}
+  85%{width:85%; background-color:var(--common-color2);}
+  90%{width:90%; background-color:var(--common-color1);}
+  100%{width:100%;background-color:var(--common-color1);}
+}
+/*** Common Virus ***/
+.corona-virus{
+  --coronaColor:#000;
+  position:relative; z-index:10; display:block;
+  .body{position:relative; display:block; width:100px; height:100px; border-radius:50%; background-color:var(--coronaColor); opacity:1; transition:0.3s;}
+}
+/* virus objects position*/
+.corona-location{position:absolute; transform:scale(0); will-change:transfrom;}
+@for $i from 1 through $amountOfVirus{
+  .corona-virus-#{$i}-location{
+    animation: coronaLocation#{$i} 10s linear $i * 960ms;
+    [class*="eye"]{
+      &::after{  
+        animation-delay:random(4000) + ms;
+      }
+    }
+  }
+  @keyframes coronaLocation#{$i} {
+      0% {transform: translateX(-10vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+      20% {transform: translateX(20vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+      40% {transform: translateX(40vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+      60% {transform: translateX(60vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+      80% {transform: translateX(80vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+      100%{transform: translateX(110vw) translateY(random(80) * 1vh) scale( random(5) * 0.1 + 0.3 ) rotate( random(90) - 45 * 1deg );}
+    } 
+}
+/*** hairs ***/
+[class*="hair"]{
+  display:block;
+  position:absolute; left:50%; top:50%; margin-left:-4px;
+    &::before{content:""; display:block; width:16px; margin-left:-8px; height:5px; border-radius:50%; background-color:var(--coronaColor);}
+    &::after{
+      position:absolute; left:50%; transform:translateX(-50%);
+      content:""; display:block; width:4px; margin-left:-4px; height:20px; background-color:var(--coronaColor);
+    }
+}
+
+/*hair location*/
+$start-position:-180deg;
+@for $i from 1 through 12{
+  .hair#{$i}{
+    $start-position:  $start-position + 30deg;
+    transform: rotateZ(#{$start-position}) translateY(-65px); 
+    /* only for promo to improve performance */
+    animation: hairMove#{$i} 1s linear $i * -60ms infinite alternate;
+  }
+}
+/* hair animation  */
+@for $i from 1 through 12{
+  $start-position:  $start-position + 30deg;
+  @keyframes hairMove#{$i} {
+    from {transform:rotateZ(#{$start-position}) translateY(-68px);}
+    to {transform:rotateZ(#{$start-position}) translateY(-61px);}
+  }  
+}
+
+/*** eyes ***/
+[class*="eye"]{
+  position:absolute; top:25%;
+  width:20px; height:26px; background-color:#fff; border-radius:50%;
+  &::before{
+    position:absolute; top:50%;
+    content:""; display:block; width:8px; height:8px; background-color:#000; border-radius:50%;
+  }
+  &::after{
+    content:""; display:block; background-color:var(--coronaColor); height:0px; will-change:height;
+    animation: closeEye 4s linear 2s infinite alternate;
+  }
+}
+.eye1{
+  left:25%; transform:rotateZ(15deg);
+  &::before{left:10%; animation: eyeMove 1s linear 0s infinite alternate;}
+}
+.eye2{
+  right:25%; transform:rotateZ(-15deg);
+  &::before{left:10%; animation: eyeMove 1s linear -0.5s infinite alternate;}
+}
+@keyframes eyeMove{
+    0% {transform:translateX(76%) translateY(10%);}
+    20% {transform:translateX(50%) translateY(0%);}
+    50% {transform:translateX(56%) translateY(30%);}
+    70% {transform:translateX(50%) translateY(0%);}
+} 
+
+@keyframes closeEye{
+  0% { height:0%; }
+  90% { height:0%; }
+  100% { height:100%; }
+}
+
+/** Logics ***/
+.logic-checkbox{ opacity:0.001; position:absolute; top:-40px;}
+/* popup */
+#whoAmIPopup:checked ~ #whoAmI,
+#HowToPlayPopup:checked ~ #HowToPlay{display:block;}
+/* play game */
+#toggleGame{
+  &:checked{
+    ~ .game-menu-frame{display:none;}
+    ~ .game-frame{display:block;}    
+  }
+}
+
+/* Graphics Level */
+#GraphicsLevel{
+  ~ .game-menu-frame #GraphicsLevelButton{
+    &::before{content:"High ";}
+    &::after{content:" 🖥️";}
+  }
+  &:checked{
+    ~ .game-menu-frame #GraphicsLevelButton{
+      color:var(--common-color1);
+      &::before{content:"Low ";}
+      &::after{content:" 📱";}
+    }
+    ~ * *{
+      &[class*="hair"]{animation-play-state:paused;}
+      &[class*="eye"]{
+        &::before, &::after{animation-play-state:paused;}
+      }
+    }
+  }
+}
+/* kill corona */
+input[type="radio"]{
+  opacity:0.001;
+  &:checked{
+    counter-increment:corona;
+    ~ .body {--coronaColor:red; opacity:0;}
+  }
+}
+
+.sum{
+  position:absolute; top:20px; left:50%;
+  display:flex; border:solid 4px #fff; border-radius:10px; 
+  font-size:40rem; font-weight:bold; color:#fff; transform:translateX(-50%) skewX(-15deg);
+  .text {flex:1; padding:10px; text-align:end; background-color:var(--common-color1); border-radius:5px 0 0 5px;}
+  &::after{content: counter(corona) "/100"; flex:1; padding:10px; background-color:var(--common-color2); border-radius:0 5px 5px 0;}
+}
